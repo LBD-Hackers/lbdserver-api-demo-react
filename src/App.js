@@ -22,6 +22,7 @@ import Header from "./components/header"
 import { v4 } from "uuid"
 import SdkDemo from './pages/Documentation';
 import DemoPage from './pages/DemoPage'
+import DashboardPage from './pages/Dashboard'
 
 import creds from '../devCredentials'
 
@@ -36,6 +37,7 @@ function App() {
     // { label: "experimental", path: "/", component: Project, props: { initialLayout: config } },
     { label: "documentation", path: "/documentation", component: SdkDemo, props: {} },
     // { label: "project", path: "/project", component: Project, props: {} }
+    { label: "dashboard", path: "/dashboard", component: DashboardPage, props: {} },
   ]
 
   useEffect(() => {
