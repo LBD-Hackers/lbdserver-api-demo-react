@@ -25,6 +25,10 @@ import DemoPage from './pages/DemoPage'
 
 import creds from '../devCredentials'
 
+import Viewer from './components/Viewer/3dviewer'
+import './components/Viewer/ViewerLayout.css'
+
+
 function App() {
 
   const [trigger, setTrigger] = useRecoilState(t)
@@ -36,6 +40,7 @@ function App() {
     // { label: "experimental", path: "/", component: Project, props: { initialLayout: config } },
     { label: "documentation", path: "/documentation", component: SdkDemo, props: {} },
     // { label: "project", path: "/project", component: Project, props: {} }
+    
   ]
 
   useEffect(() => {
@@ -51,6 +56,7 @@ function App() {
   return (
     <div id={update}>
         <Header pages={pages} />
+        {/* <Viewer className="container"/> */}
         <Routes>
           {pages.map(page => {
             const Element = page.component
