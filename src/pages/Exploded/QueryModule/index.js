@@ -130,7 +130,7 @@ const QueryModule = (props) => {
   
   return (
     <div style={{ margin: 20 }}>
-      <h4 style={{ marginTop: -5 }}>Query Resource Metadata</h4>
+      <h4 style={{ marginTop: -5 }}>Query active datasets</h4>
       <TextField
         id="outlined-multiline-flexible"
         label="Query SPARQL"

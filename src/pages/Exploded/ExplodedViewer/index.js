@@ -7,45 +7,10 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { project as p, datasets as d, selectedElements as s} from "../../../atoms"
 import {getDefaultSession} from '@inrupt/solid-client-authn-browser'
 
-const LBDviewer = () => {
-  const [models, setModels] = useState("")
-  const [dataset, setDataset] = useState("")
-  const [selectedElements, setSelectedElements] = useRecoilState(s)
+const LBDviewer = ({models}) => {
   const [selection, setSelection] = useState([])
-  const project = useRecoilValue(p)
-  const datasets = useRecoilValue(d)
 
-  useEffect(() => {
-    setActiveDatasets()
-  }, [selectedElements])
 
-  async function setActiveDatasets() {
-    const active = selectedElements.map(concept => concept.references).flat().map(item => item.distribution)
-    const m = []
-    const fetched = []
-    console.log('active', active)
-    for (const url of active) {
-      if (!fetched.includes(url)) {
-        const ct = await getDefaultSession().fetch(url, {method: "HEAD"}).then(res => res.headers.get('Content-Type'))
-        fetched.push(url)
-        if (ct === "model/gltf+json") {
-          m.push(url)
-        }
-      }
-    }
-    console.log('m', m)
-    setModels(m)
-    // for (const ds of activeDatasets) {
-    //   // only one distribution per dataset at this point
-    //   const mainDistribution = extract(ds.dataset.data, ds.dataset.url)[DCAT.distribution].map(d => d["@id"])[0]
-    //   const mime = extract(ds.dataset.data, mainDistribution)["http://www.w3.org/ns/dcat#mediaType"].map(d => d["@id"])[0]
-    //   if (mime.includes("gltf")) {
-    //     const url = extract(ds.dataset.data, mainDistribution)[DCAT.downloadURL].map(d => d["@id"])[0]
-    //     model = url
-    //   }
-    // }
-    // return {model, dataset}
-  }
 
   // useEffect(() => {
   //   const {model: distribution} = setActiveDatasets()
