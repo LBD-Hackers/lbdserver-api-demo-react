@@ -9,15 +9,21 @@ import { getDefaultSession, login, Session } from '@inrupt/solid-client-authn-br
 import { extract } from "../../util/functions";
 import { DCTERMS, LDP, RDFS } from '@inrupt/vocab-common-rdf'
 import { v4 } from "uuid"
+import CreateDataset from "../Documentation/Dialogs/CreateDataset"
+import AlignDistributions from '../Documentation/Dialogs/AlignDistributions';
 
 const index = () => {
   return (
     <div id="enrichmentViewer">
       <Viewer parentNode="enrichmentViewer"></Viewer>
-      <Enricher />
+      <CreateDataset />
+     <Enricher /> 
+      <AlignDistributions/>
+    
     </div>
   )
 }
+
 
 const Enricher = () => {
   const [selectedElements, setSelectedElements] = useRecoilState(s)
@@ -49,63 +55,38 @@ const Enricher = () => {
     setMainDataset(ds)
   }
 
-  // only able to enrich one at the time
-  async function enrich() {
-    try {
-      const distr = mainDataset.getDistributions()
-      if (distr.length === 0) {
-        throw Error("Dataset has no distributions")
-      }
-      const element = selectedElements[0]
+ // only able to enrich one at the time
 
-      for (const dist of distr) {
-        let damagedItemAlias
-        let existing = false
+ async function enrich() {
 
-        // if there is already a reference for this concept in the selected distribution/dataset
-        for (const reference of element.references) {
-          if (reference.distribution === dist.url) {
-            damagedItemAlias = reference.identifier
-            console.log("exists!")
-            existing = true
-          }
-        }
+  try {
+   // const theDataset = await project.addDataset({ [RDFS.label]: label, [RDFS.comment]: comment }, eval(isPublic))
+   // if (file) {
+     //   await theDataset.addDistribution(file, undefined, {}, undefined, eval(isPublic))
+  // }
 
-        if (!damagedItemAlias) {
-            damagedItemAlias = mainDataset.url + "#" + v4()
-        }
+      // <Button  variant="contained" component="span">
+        //  Choose File
+       // </Button>
 
-        const damageAlias = mainDataset.url + "#damage_" + v4()
+    if (distr.length === 0) {
 
-        const query = `INSERT DATA {
-            <${damagedItemAlias}> <https://w3id.org/dot#hasDamage> <${damageAlias}> .
-          }`
-
-        // add the enrichment to the dataset
-        await project.dataService.sparqlUpdate(dist.url, query)
-
-        if (!existing) {
-          const c = new LbdConcept(getDefaultSession(), project.getReferenceRegistry())
-
-          const newRef = {
-            dataset: mainDataset.url,
-            distribution: dist.url,
-            identifier: damagedItemAlias
-          }
-          // JSON.parse(JSON.stringify()) because recoil doesn't allow to store object instances
-          c.init(JSON.parse(JSON.stringify({ aliases: element.aliases, references: [...element.references, newRef] })))
-
-          // add a new reference
-          await c.addReference(damagedItemAlias, mainDataset.url, dist.url)
-          setSelectedElements(() => [c])
-        }
-      }
-
-    } catch (error) {
-      console.log('error', error)
+      throw Error("Dataset has no distributions")
     }
-
+      if (selectedElements.length > 0) {
+      const element = selectedElements[0]
+      const c = new LbdConcept(getDefaultSession(), project.getReferenceRegistry())
+      c.init(JSON.parse(JSON.stringify({ aliases: element.aliases, references: [...element.references, newRef] })))
+      await c.addReference({
+        dataset: mainDataset.url,
+        distribution: distribution.url,
+        identifier: distribution.url
+      })
+    }
+  } catch (error) {
+    console.log('error', error)
   }
+}
 
 
   return <div>
@@ -122,7 +103,7 @@ const Enricher = () => {
           return <DatasetInfo key={ds} dataset={datasets[ds]} toggle={setDataSetToEnrich} active={mainDataset && (datasets[ds].dataset.url === mainDataset.url)} />
         })}
       </RadioGroup>
-      <Button onClick={async () => { await enrich() }} disabled={!mainDataset || selectedElements.length == 0}>SET DAMAGE</Button>
+      <Button onClick={async () => { await enrich() }} disabled={!mainDataset || selectedElements.length == 0}>Upload Image</Button>
     </FormControl>
   </div>
 }
