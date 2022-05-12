@@ -36,7 +36,7 @@ export default function CreateDataset(props) {
             setLoading(true)
             const theDataset = await project.addDataset({ [RDFS.label]: label, [RDFS.comment]: comment }, eval(isPublic))
             if (file) {
-                await theDataset.addDistribution(file, undefined, {}, undefined, eval(isPublic))
+                const theDistribution = await theDataset.addDistribution(file, undefined, {}, undefined, eval(isPublic))
             }
             setSuccess(true)
             setFile(null)

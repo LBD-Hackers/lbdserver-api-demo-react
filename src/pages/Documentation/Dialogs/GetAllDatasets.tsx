@@ -69,7 +69,7 @@ export default function GetAllDatasets(props: any) {
         <Typography>{description}</Typography>
         {project ? (
             <div>
-                <Button style={{ margin: 10, width: "200" }} disabled={loading} variant="contained" onClick={getAllDatasets}>Get Datasets</Button>
+                <Button style={{ margin: 10, width: "200" }} disabled={loading} variant="contained" onClick={getAllDatasets}>Render Model</Button>
                 <FormControlLabel onChange={selectAllDatasets} control={<Checkbox checked={allSelected} />} label="Select all" />
 
                 <FormGroup>
@@ -100,4 +100,4 @@ function DatasetInfo(props: { dataset: { dataset: InstanceType<typeof LbdDataset
         setDatasets({ ...datasets, [dataset.url]: { dataset, active: !active } })
     }
     return <FormControlLabel onChange={toggleDatasetState} control={<Checkbox checked={active} />} label={makeLabel()} />
-}
+};
