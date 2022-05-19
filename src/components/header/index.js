@@ -80,14 +80,14 @@ const ResponsiveAppBar = ({ pages }) => {
                 noWrap
                 component="div"
                 component={Link}
-                to={"/"}
+                to={"/home"}
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "block" },
                   color: "white",
                 }}
               >
-                Home
+                Hennebique and After
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "block", md: "none" } }}>
                 <IconButton
