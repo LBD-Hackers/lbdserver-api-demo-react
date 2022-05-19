@@ -37,14 +37,12 @@ import HomePage from "./pages/HomePage";
 export const StoreContext = React.createContext(new Store());
 
 function App() {
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#1976d2",
-      },
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Passion One", "cursive"].join(","),
     },
   });
+
   const [trigger, setTrigger] = useRecoilState(t);
   const config = useRecoilValue(conf);
   const [update, setUpdate] = useRecoilState(propagate);
@@ -82,29 +80,29 @@ function App() {
   }, [trigger]);
 
   return (
-    // <ThemeProvider theme={darkTheme}>
-    <div id={update}>
-      <StoreContext.Provider value={new Store()}>
-        <Header pages={pages} />
-        <Routes>
-          {pages.map((page) => {
-            const Element = page.component;
-            return (
-              <Route
-                key={page.label}
-                exact
-                path={page.path}
-                element={<Element {...page.props} />}
-              />
-            );
-          })}
-        </Routes>
-        <Footer />
-        {/* <AuthComponent/>
+    <ThemeProvider theme={theme}>
+      <div id={update}>
+        <StoreContext.Provider value={new Store()}>
+          <Header pages={pages} />
+          <Routes>
+            {pages.map((page) => {
+              const Element = page.component;
+              return (
+                <Route
+                  key={page.label}
+                  exact
+                  path={page.path}
+                  element={<Element {...page.props} />}
+                />
+              );
+            })}
+          </Routes>
+          <Footer />
+          {/* <AuthComponent/>
       <Child/> */}
-      </StoreContext.Provider>
-    </div>
-    // </ThemeProvider>
+        </StoreContext.Provider>
+      </div>
+    </ThemeProvider>
   );
 }
 

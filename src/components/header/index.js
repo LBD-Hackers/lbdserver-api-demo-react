@@ -56,12 +56,22 @@ const ResponsiveAppBar = ({ pages }) => {
         main: "#1976d2",
       },
     },
+    typography: {
+      allVariants: {
+        fontFamily: ["Passion One", "cursive"].join(","),
+        textTransform: "none",
+        fontSize: 25,
+      },
+      // fontFamily: ["Passion One", "cursive"].join(","),
+      // fontSize: 20,
+      // textTransform: "none",
+    },
   });
 
   return (
     <ThemeProvider theme={darkTheme}>
       <React.Fragment>
-        <AppBar position="static">
+        <AppBar color={"default"} position="static">
           <Container maxWidth={false}>
             <Toolbar disableGutters>
               {/* mobile */}

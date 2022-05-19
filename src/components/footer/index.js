@@ -11,9 +11,9 @@ const Footer = () => {
       <Box
         px={{ xs: 3, sm: 10 }}
         py={{ xs: 5, sm: 10 }}
-        bgcolor="text.secondary"
+        bgcolor="text.primary"
         color="white"
-      >  
+      >
         <Container maxWidth="lg">
           <Grid container spacing={5}>
             <Grid item xs={12} sm={4}>
