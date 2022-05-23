@@ -55,7 +55,7 @@ async function enrich() {
     } catch (error) {
       console.log('error', error)
     }
-  }
+  } 
 return <div>
     <h4>The enrichment module</h4>
 

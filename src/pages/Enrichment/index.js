@@ -19,7 +19,7 @@ const Input = styled('input')({
   display: 'none',
 });
 
-const index = () => {
+const index = () => { 
   return (
     
     <div id="enrichmentViewer">

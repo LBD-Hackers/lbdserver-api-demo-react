@@ -90,7 +90,7 @@ export default function GetAllDatasets(props: any) {
             disabled={loading}
             variant="contained"
             onClick={getAllDatasets}
-            color="secondary"
+            color="inherit"
           >
             Render Model
           </Button>
