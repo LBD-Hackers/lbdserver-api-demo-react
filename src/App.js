@@ -1,14 +1,15 @@
-import React from 'react'
-import AuthComponent from './components/login/LoginComponent';
-import Project from './pages/Project';
+import React from "react";
+
+import AuthComponent from "./components/login/LoginComponent";
+import Project from "./pages/Project";
 // import {useSession} from '@inrupt/solid-ui-react'
-import { getDefaultSession } from '@inrupt/solid-client-authn-browser';
-import { getAuthentication } from './components/login/functions';
-import { useEffect, useState } from 'react';
-import { propagate, sessionTrigger as t } from './atoms';
-import conf from "./util/config"
-import { useRecoilState, useRecoilValue } from 'recoil'
-import Dashboard from './util/Dashboard'
+import { getDefaultSession } from "@inrupt/solid-client-authn-browser";
+import { getAuthentication } from "./components/login/functions";
+import { useEffect, useState } from "react";
+import { propagate, sessionTrigger as t } from "./atoms";
+import conf from "./util/config";
+import { useRecoilState, useRecoilValue } from "recoil";
+import Dashboard from "./util/Dashboard";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,62 +17,92 @@ import {
   Link,
   useRouteMatch,
   useParams,
-  useNavigate
+  useNavigate,
 } from "react-router-dom";
-import Header from "./components/header"
-import { v4 } from "uuid"
-import SdkDemo from './pages/Documentation';
-import DemoPage from './pages/DemoPage'
-import Enrichment from './pages/Enrichment'
-import Exploded from './pages/Exploded'
-import creds from '../devCredentials'
+import Header from "./components/header";
+import Footer from "./components/footer";
+import { v4 } from "uuid";
+import SdkDemo from "./pages/Documentation";
+import DemoPage from "./pages/DemoPage";
+import Enrichment from "./pages/Enrichment";
+import GridTest from "./pages/GridTest";
+import Exploded from "./pages/Exploded";
+import creds from "../devCredentials";
+import LayoutPage from "./pages/LayoutPage";
+import { Store } from "n3";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material";
+import HomePage from "./pages/HomePage";
 
-import {Store} from 'n3'
-
-
-export const StoreContext = React.createContext(new Store())
-
-
+export const StoreContext = React.createContext(new Store());
 
 function App() {
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Passion One", "cursive"].join(","),
+    },
+  });
 
-  const [trigger, setTrigger] = useRecoilState(t)
-  const config = useRecoilValue(conf)
-  const [update, setUpdate] = useRecoilState(propagate)
+  const [trigger, setTrigger] = useRecoilState(t);
+  const config = useRecoilValue(conf);
+  const [update, setUpdate] = useRecoilState(propagate);
 
   const pages = [
-    {label: "demo", path: "/", component: DemoPage, props: {}},
+    { label: "home", path: "/home", component: HomePage, props: {} },
+
+    { label: "demo", path: "/", component: DemoPage, props: {} },
     // { label: "experimental", path: "/", component: Project, props: { initialLayout: config } },
-    { label: "documentation", path: "/documentation", component: SdkDemo, props: {} },
-    { label: "enrichment", path: "/enrichment", component: Enrichment, props: {} },
-    // { label: "experiment", path: "/experiment", component: Exploded, props: {} },
-    // { label: "project", path: "/project", component: Project, props: {} }
-  ]
+    {
+      label: "documentation",
+      path: "/documentation",
+      component: SdkDemo,
+      props: {},
+    },
+    {
+      label: "enrichment",
+      path: "/enrichment",
+      component: Enrichment,
+      props: {},
+    },
+    { label: "gridtest", path: "/gridtest", component: GridTest, props: {} },
+    { label: "layout", path: "/layout", component: LayoutPage, props: {} },
+  ];
 
   useEffect(() => {
-    getAuthentication().then(() => {
-      setUpdate(v4())
-    }).catch((error) => {
-      console.log('error', error)
-      // window.location = window.location.pathname
-    })
-  }, [trigger])
-
+    getAuthentication()
+      .then(() => {
+        setUpdate(v4());
+      })
+      .catch((error) => {
+        console.log("error", error);
+        // window.location = window.location.pathname
+      });
+  }, [trigger]);
 
   return (
-    <div id={update}>
-      <StoreContext.Provider value={new Store()}>
-        <Header pages={pages} />
-        <Routes>
-          {pages.map(page => {
-            const Element = page.component
-            return <Route key={page.label} exact path={page.path} element={<Element {...page.props} />} />
-          })}
-        </Routes>
-      {/* <AuthComponent/>
+    <ThemeProvider theme={theme}>
+      <div id={update}>
+        <StoreContext.Provider value={new Store()}>
+          <Header pages={pages} />
+          <Routes>
+            {pages.map((page) => {
+              const Element = page.component;
+              return (
+                <Route
+                  key={page.label}
+                  exact
+                  path={page.path}
+                  element={<Element {...page.props} />}
+                />
+              );
+            })}
+          </Routes>
+          <Footer />
+          {/* <AuthComponent/>
       <Child/> */}
-      </StoreContext.Provider>
-    </div>
+        </StoreContext.Provider>
+      </div>
+    </ThemeProvider>
   );
 }
 

@@ -21,7 +21,9 @@ const Input = styled('input')({
 
 const index = () => {
   return (
+    
     <div id="enrichmentViewer">
+      
       <Viewer parentNode="enrichmentViewer"></Viewer>
       <Enricher /> 
       <GetAllDatasets/>
