@@ -46,7 +46,7 @@ const GridTest = () => {
     <div>
       <Box
         px={{ xs: 3, sm: 0 }}
-        py={{ xs: 5, sm: 0 }}
+        py={{ xs: 5, sm: 3 }}
         // bgcolor="text.primary"
         // color="white"
       >

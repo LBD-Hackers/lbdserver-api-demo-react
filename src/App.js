@@ -47,25 +47,12 @@ function App() {
   const config = useRecoilValue(conf);
   const [update, setUpdate] = useRecoilState(propagate);
 
-  const pages = [
-    { label: "home", path: "/home", component: HomePage, props: {} },
+  const pages = [,
 
-    { label: "demo", path: "/", component: DemoPage, props: {} },
+    { label: "HOME", path: "/", component: HomePage, props: {} },
     // { label: "experimental", path: "/", component: Project, props: { initialLayout: config } },
-    {
-      label: "documentation",
-      path: "/documentation",
-      component: SdkDemo,
-      props: {},
-    },
-    {
-      label: "enrichment",
-      path: "/enrichment",
-      component: Enrichment,
-      props: {},
-    },
-    { label: "gridtest", path: "/gridtest", component: GridTest, props: {} },
-    { label: "layout", path: "/layout", component: LayoutPage, props: {} },
+    { label: "DE BUNKER", path: "/enrichment", component: GridTest, props: {} },
+  
   ];
 
   useEffect(() => {

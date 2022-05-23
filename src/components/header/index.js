@@ -80,14 +80,14 @@ const ResponsiveAppBar = ({ pages }) => {
                 noWrap
                 component="div"
                 component={Link}
-                to={"/home"}
+                to={"/"}
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "block" },
                   color: "white",
                 }}
               >
-                Hennebique and After
+                HENNEBIQUE AND AFTER
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "block", md: "none" } }}>
                 <IconButton
@@ -141,7 +141,7 @@ const ResponsiveAppBar = ({ pages }) => {
                 to={"/"}
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
               >
-                LBDserver
+                {/* LBDserver */}
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
@@ -186,14 +186,16 @@ const ResponsiveAppBar = ({ pages }) => {
                     {getDefaultSession().info.isLoggedIn ? (
                       <Button
                         onClick={onLogoutClick}
-                        style={{ textAlign: "center" }}
+                        style={{ textAlign: "center" }}  
+                        color="inherit"
                       >
                         Logout
                       </Button>
                     ) : (
                       <Button
                         onClick={() => setOpenAuthDialog(true)}
-                        style={{ textAlign: "center" }}
+                        style={{ textAlign: "center" }}  
+                        color="inherit"                
                       >
                         Login
                       </Button>
