@@ -76,139 +76,73 @@ const GridTest = () => {
     </Grid>
   );
 };
-const Enricher = () => {
-  const [selectedElements, setSelectedElements] = useRecoilState(s);
-  const project = useRecoilValue(p);
-  const [datasets, setDatasets] = useRecoilState(d);
-  const [mainDataset, setMainDataset] = useState();
-  const [error, setError] = useState("");
-  const [label, setLabel] = useState("label");
-  const [comment, setComment] = useState("comment");
-  const [isPublic, setIsPublic] = useState("undefined");
-  const [file, setFile] = useState(null);
-
-  // useEffect(() => {
-  //   getAllDatasets()
-  // }, [])
-
-  // async function getAllDatasets() {
-  //   console.log('project', project)
-  //  const allDatasets = await project.getAllDatasetUrls()
-  //  const loaded = {}
-  //  for (const ds of allDatasets) {
-  //    const myDs = new LbdDataset(getDefaultSession(), ds)
-  //   console.log('myDs', myDs)
-  //    if (myDs.url.includes(project.localProject)) { // this is one of my datasets
-  //      await myDs.init()
-  //      loaded[ds] = { dataset: myDs, active: false }
-  //   }
-  // }
-  //   setDatasets(loaded)
-  // }
-
-  // function setDataSetToEnrich(ds) {
-  //  setMainDataset(ds)
-  //}
-
-  // only able to enrich one at the time
-  // const theDataset = await project.addDataset({ [RDFS.label]: label, [RDFS.comment]: comment }, eval(isPublic))
-  // if (file) {
-  //   await theDataset.addDistribution(file, undefined, {}, undefined, eval(isPublic))
-  // }
-
-  // <Button  variant="contained" component="span">
-  //  Choose File
-  // </Button>
-  // dit stuk code moet in de knop verwerkt worden
-
-  async function enrich() {
-    try {
-      const theDataset = await project.addDataset(
-        { [RDFS.label]: label, [RDFS.comment]: comment },
-        eval(isPublic)
-      );
-      let theDistribution;
-      if (file) {
-        theDistribution = await theDataset.addDistribution(
-          file,
-          undefined,
-          {},
-          undefined,
-          eval(isPublic)
-        );
-        console.log(theDistribution);
-        setDatasets((p) => {
-          return {
-            ...p,
-            [theDataset.url]: { dataset: theDataset, active: true },
-          };
-        });
-        setMainDataset(theDataset);
-        // if (distr.length === 0) {
-        //   throw Error("Dataset has no distributions")
-        // }
-        if (selectedElements.length > 0) {
-          const element = selectedElements[0];
-          const c = new LbdConcept(
-            getDefaultSession(),
-            project.getReferenceRegistry()
-          );
-          c.init(
-            JSON.parse(
-              JSON.stringify({
-                aliases: element.aliases,
-                references: [...element.references],
-              })
-            )
-          );
-
-          await c.addReference(
-            theDistribution.url,
-            theDataset.url,
-            theDistribution.url
-          );
-        }
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
-  return (
-    <div>
-      <h4>The enrichment module</h4>
-
-      <FormControl>
-        <RadioGroup
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
-          value={mainDataset && mainDataset.url}
-        ></RadioGroup>
-        <label
-          style={{ margin: 10, width: "200" }}
-          htmlFor="contained-button-file"
-        >
-          <Input
-            onChange={(e) => setFile(e.target.files[0])}
-            id="contained-button-file"
-            type="file"
-          />
-          <Button variant="contained" component="span">
-            Choose File
-          </Button>
-        </label>
-        <Button
-          onClick={async () => {
-            await enrich();
-          }}
-          disabled={selectedElements.length == 0}
-        >
-          Enrich
-        </Button>
-      </FormControl>
-    </div>
-  );
+const subComponentStyle = {
+  marginTop: 30,
+  border: "2px solid gray",
+  borderRadius: 15,
+  padding: 15,
 };
+
+const Enricher = () => {
+  const [selectedElements, setSelectedElements] = useRecoilState(s)
+  const project = useRecoilValue(p)
+  const [datasets, setDatasets] = useRecoilState(d)
+  const [mainDataset, setMainDataset] = useState()
+  const [error, setError] = useState("")
+  const [label, setLabel] = useState("label")
+  const [comment, setComment] = useState("comment")
+  const [isPublic, setIsPublic] = useState("undefined")
+  const [file, setFile] = useState(null)
+
+
+ async function enrich() {
+  try {
+    const theDataset = await project.addDataset({ [RDFS.label]: label, [RDFS.comment]: comment }, eval(isPublic))
+   let theDistribution 
+   if (file) {
+         theDistribution = await theDataset.addDistribution(file, undefined, {}, undefined, eval(isPublic))
+        console.log(theDistribution)
+         setDatasets(p => {return{...p,[theDataset.url]:{ dataset: theDataset, active: true }}})
+         setMainDataset(theDataset)
+    // if (distr.length === 0) {
+    //   throw Error("Dataset has no distributions")
+    // }
+    if (selectedElements.length > 0) {
+     const element = selectedElements[0]
+     const c = new LbdConcept(getDefaultSession(), project.getReferenceRegistry())
+      c.init(JSON.parse(JSON.stringify({ aliases: element.aliases, references: [...element.references] })))
+
+       await c.addReference(
+       theDistribution.url, theDataset.url, theDistribution.url)
+    }
+    }
+  } catch (error) {
+    console.log('error', error)
+  }
+}
+
+
+  return <div>
+    <h4>The enrichment module</h4>
+
+    <FormControl >
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+        value={mainDataset && mainDataset.url}
+      >
+      </RadioGroup>
+      <label style={{margin: 10, width: "200"}} htmlFor="contained-button-file">
+                            <Input onChange={e => setFile(e.target.files[0])} id="contained-button-file" type="file" />
+                            <Button  variant="contained" component="span">
+                                Choose File
+                            </Button>
+                        </label>
+      <Button onClick={async () => { await enrich() }} disabled={selectedElements.length == 0}>Enrich</Button>
+    </FormControl>
+  </div>
+}
+
 
 export default GridTest;

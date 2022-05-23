@@ -1,5 +1,4 @@
 import React from "react";
-import { SocialIcon } from "react-social-icons";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
