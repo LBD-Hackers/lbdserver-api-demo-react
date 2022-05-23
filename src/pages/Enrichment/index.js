@@ -13,6 +13,7 @@ import CreateDataset from "../Documentation/Dialogs/CreateDataset"
 import GetAllDatasets from '../Documentation/Dialogs/GetAllDatasets';
 import EnrichtmentFunction from '../../components/EnrichtmentFunction';
 import { styled } from '@mui/material/styles';
+import FotoViewer from '../../components/FotoViewer';
 
 const Input = styled('input')({
   display: 'none',
@@ -24,6 +25,7 @@ const index = () => {
       <Viewer parentNode="enrichmentViewer"></Viewer>
       <Enricher /> 
       <GetAllDatasets/>
+      <FotoViewer/>
 
     
     </div>
@@ -40,39 +42,6 @@ const Enricher = () => {
   const [isPublic, setIsPublic] = useState("undefined")
   const [file, setFile] = useState(null)
 
- // useEffect(() => {
- //   getAllDatasets()
- // }, [])
-
- // async function getAllDatasets() {
- //   console.log('project', project)
-  //  const allDatasets = await project.getAllDatasetUrls()
-  //  const loaded = {}
-  //  for (const ds of allDatasets) {
-  //    const myDs = new LbdDataset(getDefaultSession(), ds)
-   //   console.log('myDs', myDs)
-  //    if (myDs.url.includes(project.localProject)) { // this is one of my datasets
-  //      await myDs.init()
-  //      loaded[ds] = { dataset: myDs, active: false }
-   //   }
-   // }
- //   setDatasets(loaded)
- // }
-
- // function setDataSetToEnrich(ds) {
-  //  setMainDataset(ds)
-  //}
-
- // only able to enrich one at the time
-// const theDataset = await project.addDataset({ [RDFS.label]: label, [RDFS.comment]: comment }, eval(isPublic))
-   // if (file) {
-     //   await theDataset.addDistribution(file, undefined, {}, undefined, eval(isPublic))
-  // }
-
-      // <Button  variant="contained" component="span">
-        //  Choose File
-       // </Button>
-// dit stuk code moet in de knop verwerkt worden
 
  async function enrich() {
   try {
