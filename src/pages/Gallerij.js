@@ -1,0 +1,57 @@
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { Container } from "@mui/material";
+
+
+const Gallerij = () => {
+  return (
+    <Box
+      px={{ xs: 3, sm: 10 }}
+      py={{ xs: 5, sm: 10 }}
+      //   bgcolor="text.secondary"
+      //   color="white"
+      sx={{ flexGrow: 1 }}
+    >
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justifyContent="space-around"
+        alignItems="stretch"
+      >
+        <Grid item xs={4}>
+          <div>
+            <div>
+              <h1>Titel</h1>
+            </div>
+            <div>
+            test 123
+            </div>
+          </div>
+        </Grid>
+        <Grid item xs={8}>
+          <Grid container justifyContent="center">
+            <Box
+              //   py={{ xs: 5, sm: 12 }}
+              component="img"
+              sx={{
+                height: 730,
+                width: 978,
+                maxHeight: { xs: 233, md: 365, lg: 639 },
+                maxWidth: { xs: 350, md: 489, lg: 856 },
+              }}
+              alt="bunker home"
+              src="http://localhost:5000/julien/images/home.jpg"
+            />
+          </Grid>
+        </Grid>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={8}></Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default Gallerij;

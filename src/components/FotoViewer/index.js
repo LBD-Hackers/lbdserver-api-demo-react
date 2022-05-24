@@ -17,8 +17,11 @@ const FotoViewer = ({ parentNode }) => {
     useEffect(() => {
       setActiveDatasets()
     }, [datasets])
-  
+   
 async function setActiveDatasets() {
+    
+      if (selectedElements.length > 0) {
+      const concept = selectedElements[0]
       const allowedContentTypes=["image/jpeg","image/png"]
       const relevantDistributions=[]
       for (const ref of concept.references){
@@ -39,6 +42,6 @@ async function setActiveDatasets() {
        </div>
      )
   
-  };
+  };}
   
   export default FotoViewer;

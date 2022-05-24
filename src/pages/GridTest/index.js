@@ -36,6 +36,7 @@ import Container from "@mui/material/Container";
 
 import GetProjects from "../Documentation/Dialogs/GetProjects";
 // import EnrichtmentFunction from "../../components/EnrichtmentFunction";
+import FotoViewer from "../../components/FotoViewer";
 
 const Input = styled("input")({
   display: "none",
@@ -69,14 +70,14 @@ const GridTest = () => {
                 <Enricher />
               </div>
             </Grid>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={4}>
               <div style={viewerStyle}>
                 <Viewer />
               </div>
             </Grid>
             {/* <Grid item xs={12} sm={4}>
               <div style={subComponentStyle}>
-                <Viewer />
+                <FotoViewer/>
               </div>
             </Grid> */}
           </Grid>

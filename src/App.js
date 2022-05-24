@@ -33,6 +33,7 @@ import { Store } from "n3";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
 import HomePage from "./pages/HomePage";
+import Gallerij from "./pages/Gallerij";
 
 export const StoreContext = React.createContext(new Store());
 
@@ -52,6 +53,8 @@ function App() {
     { label: "HOME", path: "/", component: HomePage, props: {} },
     // { label: "experimental", path: "/", component: Project, props: { initialLayout: config } },
     { label: "DE BUNKER", path: "/enrichment", component: GridTest, props: {} },
+    { label: "GALLERIJ", path: "/gallerij", component: Gallerij, props: {} },
+
   
   ];
 
