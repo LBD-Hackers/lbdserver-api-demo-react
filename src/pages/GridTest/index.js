@@ -37,6 +37,7 @@ import Container from "@mui/material/Container";
 import GetProjects from "../Documentation/Dialogs/GetProjects";
 // import EnrichtmentFunction from "../../components/EnrichtmentFunction";
 import FotoViewer from "../../components/FotoViewer";
+import AlignDistributions from "../Documentation/Dialogs/AlignDistributions";
 
 const Input = styled("input")({
   display: "none",
@@ -80,6 +81,13 @@ const GridTest = () => {
                 <FotoViewer/>
               </div>
             </Grid> */}
+          </Grid>
+          <Grid item xs={12} sm={4}>
+          <div style={viewerStyle}>
+          <AlignDistributions
+            style={subComponentStyle}
+            title={"5. Align datasets and create abstract concepts"} />
+        </div>
           </Grid>
         </Container>
       </Box>
