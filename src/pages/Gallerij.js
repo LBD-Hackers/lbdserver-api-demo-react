@@ -1,57 +1,78 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import { Container } from "@mui/material";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import Container from "@mui/material/Container";
 
-
-const Gallerij = () => {
+export default function StandardImageList() {
   return (
-    <Box
-      px={{ xs: 3, sm: 10 }}
-      py={{ xs: 5, sm: 10 }}
-      //   bgcolor="text.secondary"
-      //   color="white"
-      sx={{ flexGrow: 1 }}
-    >
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        justifyContent="space-around"
-        alignItems="stretch"
-      >
-        <Grid item xs={4}>
-          <div>
-            <div>
-              <h1>Titel</h1>
-            </div>
-            <div>
-            test 123
-            </div>
-          </div>
-        </Grid>
-        <Grid item xs={8}>
-          <Grid container justifyContent="center">
-            <Box
-              //   py={{ xs: 5, sm: 12 }}
-              component="img"
-              sx={{
-                height: 730,
-                width: 978,
-                maxHeight: { xs: 233, md: 365, lg: 639 },
-                maxWidth: { xs: 350, md: 489, lg: 856 },
-              }}
-              alt="bunker home"
-              src="http://localhost:5000/julien/images/home.jpg"
+    <Container>
+      <ImageList sx={{ width: 1000, height: 900 }} cols={3} rowHeight={328}>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
             />
-          </Grid>
-        </Grid>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={8}></Grid>
-      </Grid>
-    </Box>
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </Container>
   );
-};
+}
 
-export default Gallerij;
+const itemData = [
+  {
+    img: "http://localhost:5000/julien/images/ImageList1.jpg",
+    title: "ImageList1",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList2.jpg",
+    title: "ImageList2",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList3.jpg",
+    title: "ImageList3",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList4.jpg",
+    title: "ImageList4",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList5.jpg",
+    title: "ImageList5",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList6.jpg",
+    title: "ImageList6",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList7.jpg",
+    title: "ImageList7",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList8.jpg",
+    title: "ImageList8",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList9.jpg",
+    title: "ImageList9",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList10.jpg",
+    title: "ImageList10",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList11.jpg",
+    title: "ImageList11",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList12.jpeg",
+    title: "ImageList12",
+  },
+  {
+    img: "http://localhost:5000/julien/images/ImageList13.jpeg",
+    title: "ImageList13",
+  },
+];
