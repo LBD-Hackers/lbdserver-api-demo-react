@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
 
-
 const HomePage = () => {
   return (
     <Box
@@ -20,11 +19,12 @@ const HomePage = () => {
         direction="row"
         justifyContent="space-around"
         alignItems="stretch"
+        textAlign="justify"
       >
         <Grid item xs={4}>
           <div>
             <div>
-              <h1>Titel</h1>
+              <h1>Beton in België 1890 - 2020</h1>
             </div>
             <div>
               Om de activiteiten van de Duitse militaire scheepswerven te
