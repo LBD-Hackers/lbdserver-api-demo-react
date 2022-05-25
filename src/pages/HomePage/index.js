@@ -1,18 +1,10 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Container } from "@mui/material";
 
 const HomePage = () => {
   return (
-    <Box
-      px={{ xs: 3, sm: 10 }}
-      py={{ xs: 5, sm: 10 }}
-      //   bgcolor="text.secondary"
-      //   color="white"
-      sx={{ flexGrow: 1 }}
-    >
+    <Box px={{ xs: 3, sm: 10 }} py={{ xs: 5, sm: 10 }} sx={{ flexGrow: 1 }}>
       <Grid
         container
         spacing={2}
@@ -26,6 +18,7 @@ const HomePage = () => {
             <div>
               <h1>Beton in België 1890 - 2020</h1>
             </div>
+
             <div>
               Om de activiteiten van de Duitse militaire scheepswerven te
               beschermen tegen luchtbombardementen, werden, verspreid in de
@@ -64,7 +57,7 @@ const HomePage = () => {
               //   py={{ xs: 5, sm: 12 }}
               component="img"
               sx={{
-                height: 730,
+                height: 730, 
                 width: 978,
                 maxHeight: { xs: 233, md: 365, lg: 639 },
                 maxWidth: { xs: 350, md: 489, lg: 856 },

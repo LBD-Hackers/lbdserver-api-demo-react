@@ -55,7 +55,7 @@ const ResponsiveAppBar = ({ pages }) => {
       primary: {
         main: "#1976d2",
       },
-    },
+    }, 
     typography: {
       allVariants: {
         fontFamily: ["Passion One", "cursive"].join(","),
@@ -189,7 +189,7 @@ const ResponsiveAppBar = ({ pages }) => {
                         style={{ textAlign: "center" }}  
                         color="inherit"
                       >
-                        Logout
+                        Logout 
                       </Button>
                     ) : (
                       <Button

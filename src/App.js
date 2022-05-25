@@ -17,7 +17,7 @@ import {
   Link,
   useRouteMatch,
   useParams,
-  useNavigate, 
+  useNavigate,
 } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -28,7 +28,6 @@ import Enrichment from "./pages/Enrichment";
 import GridTest from "./pages/GridTest";
 import Exploded from "./pages/Exploded";
 import creds from "../devCredentials";
-import LayoutPage from "./pages/LayoutPage";
 import { Store } from "n3";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
@@ -49,15 +48,19 @@ function App() {
   const config = useRecoilValue(conf);
   const [update, setUpdate] = useRecoilState(propagate);
 
-  const pages = [,
+  const pages = [
+    ,
+    { label: "Home", path: "/", component: HomePage, props: {} },
+    { label: "Upload Model", path: "/uploadmodel", component: DemoPage, props: {} },
 
-    { label: "HOME", path: "/", component: HomePage, props: {} },
-    // { label: "experimental", path: "/", component: Project, props: { initialLayout: config } },
-    { label: "DE BUNKER", path: "/enrichment", component: GridTest, props: {} },
-    { label: "GALLERIJ", path: "/gallerij", component: Gallerij, props: {} },
-    { label: "ABOUT", path: "/about", component: About, props: {} },
-
-  
+    {
+      label: "Enrichment",
+      path: "/enrichment",
+      component: GridTest,
+      props: {},
+    },
+    { label: "Gallery", path: "/gallery", component: Gallerij, props: {} },
+    { label: "About", path: "/about", component: About, props: {} },
   ];
 
   useEffect(() => {

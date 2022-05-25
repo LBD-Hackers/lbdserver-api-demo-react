@@ -18,41 +18,40 @@ const DemoPage = () => {
       <Grid item xs={0} sm={2} md={3} />
       <Grid item style={{ margin: 15 }} xs={4} sm={4} md={6}>
         <div style={subComponentStyle}>
-          <CreateProject
-            title={"1. (optional) create a project (login required)"}
-          />
+          <CreateProject title={"Create a project (login required)"} />
         </div>
-        <div style={subComponentStyle}>
+        {/* <div style={subComponentStyle}>
           <GetProjects
             style={subComponentStyle}
             title={"2. Get available projects for this aggregator"}
           />
-        </div>
+        </div> */}
         <div style={subComponentStyle}>
           <CreateDataset
             style={subComponentStyle}
-            title={"3. Upload Datasets to this project"}
+            title={"Upload Model to this project"}
           />
         </div>
+
         <div style={subComponentStyle}>
           <GetAllDatasets
             style={subComponentStyle}
-            title={"4. Activate Datasets of this project"}
+            title={"Activate Dataset"}
           />
         </div>
         <div style={subComponentStyle}>
           <AlignDistributions
             style={subComponentStyle}
-            title={"5. Align datasets and create abstract concepts"}
+            title={"Create concepts to enrich model"}
           />
         </div>
-        <div style={subComponentStyle}>
+        {/* <div style={subComponentStyle}>
           <BasicTabs
             title={
               "6. Scroll through the enrichment modules, visualise and query the project."
             }
           />
-        </div>
+        </div> */}
       </Grid>
       <Grid item xs={0} sm={2} md={3} />
     </Grid>

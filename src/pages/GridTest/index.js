@@ -52,7 +52,7 @@ const GridTest = () => {
         // bgcolor="text.primary"
         // color="white"
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg"> 
           <Grid container spacing={5}>
             <Grid item xs={12} sm={4}>
               <div style={subComponentStyle}>
@@ -70,8 +70,14 @@ const GridTest = () => {
               <div style={subComponentStyle}>
                 <Enricher />
               </div>
+              {/* <div style={subComponentStyle}>
+                <AlignDistributions
+                  style={subComponentStyle}
+                  title={"Align datasets and create abstract concepts"}
+                />
+              </div> */}
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={8}>
               <div style={viewerStyle}>
                 <Viewer />
               </div>
@@ -81,13 +87,6 @@ const GridTest = () => {
                 <FotoViewer/>
               </div>
             </Grid> */}
-          </Grid>
-          <Grid item xs={12} sm={4}>
-          <div style={viewerStyle}>
-          <AlignDistributions
-            style={subComponentStyle}
-            title={"5. Align datasets and create abstract concepts"} />
-        </div>
           </Grid>
         </Container>
       </Box>

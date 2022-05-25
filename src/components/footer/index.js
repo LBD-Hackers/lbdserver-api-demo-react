@@ -16,14 +16,30 @@ const Footer = () => {
         <Container maxWidth="lg">
           <Grid container spacing={5}>
             <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Info</Box>
+              
               <Box>
-                <Link
-                  href="https://arch.ugent.be/hennebique/"
-                  color="inherit"
-                  underline="hover"
-                >
-                  Site Hennebique and After
+                <Link href="/" color="inherit" underline="hover">
+                  Home
+                </Link>
+              </Box>
+              <Box>
+                <Link href="http://localhost:3000/uploadmodel" color="inherit" underline="hover">
+                  Upload Model
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/enrichment" color="inherit" underline="hover">
+                  Enrichment
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/gallery" color="inherit" underline="hover">
+                  Gallery
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/about" color="inherit" underline="hover">
+                  About
                 </Link>
               </Box>
             </Grid>
@@ -58,20 +74,14 @@ const Footer = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Help</Box>
+              <Box borderBottom={1}>Info</Box>
               <Box>
-                <Link href="/" color="inherit" underline="hover">
-                  contact
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/" color="inherit" underline="hover">
-                  Support
-                </Link>
-              </Box>
-              <Box>
-                <Link href="/" color="inherit" underline="hover">
-                  Support
+                <Link
+                  href="https://arch.ugent.be/hennebique/"
+                  color="inherit"
+                  underline="hover"
+                >
+                  Site Hennebique and After
                 </Link>
               </Box>
             </Grid>

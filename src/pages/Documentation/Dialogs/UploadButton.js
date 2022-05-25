@@ -15,7 +15,7 @@ export default function UploadButtons() {
     <br/>
 <label style={{margin: 10, width: "200"}} htmlFor="contained-button-file">
     <Input onChange={e => setFile(e.target.files[0])} id="contained-button-file" type="file" />
-    <Button  variant="contained" component="span">
+    <Button  color="inherit" variant="contained" component="span">
         Choose File
     </Button>
 </label>
